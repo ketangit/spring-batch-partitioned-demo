@@ -1,0 +1,65 @@
+.metadata
+.project
+.classpath
+
+logs
+target
+.settings
+.idea
+
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.iws
+*.releaseBackup
+
+.externalToolBuilders/
+
+.vs
+**/*.sou
+**/*.user
+bin
+obj
+packages
+
+*.log
+build
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+dist
+tmp
+out-tsc
+
+# IDEs and editors
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db

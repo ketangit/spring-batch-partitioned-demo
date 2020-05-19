@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: spring-batch-partitioned-demo
+spec:
+  template:
+    metadata:
+      labels:
+        app: spring-batch-partitioned-demo
+        appType: scdf
+        label1: value1
+    spec:
+      restartPolicy: Never
+      serviceAccountName: scdf-sa
+      securityContext:
+        runAsUser: 99
+        fsGroup: 99
+      imagePullSecrets:
+        - name: image-pull-secret
+      containers:
+        - name: spring-batch-partitioned-demo
+          image: app-image
+          args: ["--spring.cloud.data.flow.platformname=default", "--spring.cloud.task.executionid=100"]
+          imagePullPolicy: Always
+          env:
+            - name: JAVA_OPTS
+              valueFrom:
+                configMapKeyRef:
+                  name: app-runtime
+                  key: java-opts
+          envFrom:
+            - configMapRef:
+                name: app-runtime
+  backoffLimit: 0

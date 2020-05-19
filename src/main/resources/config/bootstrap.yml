@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: spring-batch-partitioned-demo
+  cloud:
+    kubernetes:
+      config:
+        sources:
+          - name: base-properties

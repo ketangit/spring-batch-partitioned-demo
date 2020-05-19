@@ -1,0 +1,17 @@
+bases:
+  - ../../base/
+
+images:
+  - name: app-image
+    newName: spring-batch-partitioned-demo:latest
+
+configMapGenerator:
+  - name: app-runtime
+    literals:
+      - SPRING_PROFILES_ACTIVE=dev
+      - java-opts="-XX:MaxDirectMemorySize=10M -XX:MaxMetaspaceSize=105M -XX:ReservedCodeCacheSize=240M -Xss1M -Xmx420M"
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    appType: scdf

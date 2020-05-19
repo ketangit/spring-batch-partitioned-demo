@@ -1,0 +1,40 @@
+spring:
+  main:
+    banner-mode: "off"
+    web-application-type: "none"
+  flyway:
+    enabled: false
+
+#### Cloudfoundry deployer properties ###########
+spring.cloud.deployer.kubernetes:
+  namespace: default
+  deployment-service-account-name: scdf-sa
+  imagePullPolicy: always
+  entryPointStyle: exec
+  image-pull-secret: image-pull-secret
+  create-job: true
+  pod-security-context.run-as-user: 99
+  pod-security-context.fs-group: 99
+  environment-variables: ENV1=WORKER1,ENV2=WORKER2
+  configMapKeyRefs:
+    - envVarName: JAVA_OPTS
+      configMapName: app-runtime
+      dataKey: java-opts
+  deploymentLabels: appType:scdf,label1:value1
+  backoffLimit: 0
+  restartPolicy: Never
+
+#### Spring logging properties ##################
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        batch:
+          core: DEBUG
+        cloud:
+          deployer: DEBUG
+          dataflow: DEBUG
+    io:
+      fabric8:
+        kubernetes: DEBUG
